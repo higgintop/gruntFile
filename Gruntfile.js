@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     copy: {
       main: {
         files: [
-          {expand: true, cwd: 'app/', src: ['**', '!*.jade'], dest: 'public/', filter: 'isFile'}
+          {expand: true, cwd: 'app/', src: ['**', '!*.jade', '!**/*.scss'], dest: 'public/', filter: 'isFile'}
         ]
       }
     },
@@ -27,10 +27,20 @@ module.exports = function(grunt) {
         {expand: true, cwd: 'app/', src: ['**/*.jade', '!**/_*.jade'], dest: 'public/', ext: '.html'}
       ]
      }
+    },
+    sass: {
+      options: {
+        sourceMap: true
+      },
+      dist: {
+        files: {
+         'public/css/main.css': 'app/css/main.scss'
+        }
+      }
     }
   });
 
   grunt.registerTask('default', []);
-  grunt.registerTask('build', ['clean', 'copy', 'jade']);
+  grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass']);
 
 };
