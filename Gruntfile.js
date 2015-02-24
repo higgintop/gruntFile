@@ -13,6 +13,14 @@ module.exports = function(grunt) {
 
 
   grunt.initConfig({
+    autoprefixer: {
+      options: {
+         browsers: ['> 1% in US']
+        },
+      build: {
+        src: 'public/css/**/*.css'
+     }
+    },
     clean : ['public'],
     copy: {
       main: {
@@ -49,13 +57,13 @@ module.exports = function(grunt) {
       },
       sass: {
         files: ['app/**/*.scss'],
-        tasks: ['sass']
+        tasks: ['sass', 'autoprefixer']
       }
     }
   });
 
   grunt.registerTask('default', []);
-  grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass']);
+  grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass', 'autoprefixer']);
   grunt.registerTask('serve', ['build', 'watch']);
 
 };
