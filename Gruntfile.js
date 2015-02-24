@@ -37,6 +37,20 @@ module.exports = function(grunt) {
          'public/css/main.css': 'app/css/main.scss'
         }
       }
+    },
+    watch: {
+      other: {
+        files: ['app/**', '!app/**/*.jade', '!app/**/*.scss'],
+        tasks: ['copy']
+      },
+      jade: {
+        files: ['app/**/*.jade'],
+        tasks: ['jade']
+      },
+      sass: {
+        files: ['app/**/*.scss'],
+        tasks: ['sass']
+      }
     }
   });
 
