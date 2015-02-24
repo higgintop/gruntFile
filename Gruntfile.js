@@ -31,10 +31,13 @@ module.exports = function(grunt) {
     },
     jade: {
       compile: {
-      files: [
-        {expand: true, cwd: 'app/', src: ['**/*.jade', '!**/_*.jade'], dest: 'public/', ext: '.html'}
-      ]
-     }
+        options: {
+          pretty: true
+        },
+        files: [
+          {expand: true, cwd: 'app/', src: ['**/*.jade', '!**/_*.jade'], dest: 'public/', ext: '.html'}
+        ]
+      }
     },
     sass: {
       options: {
@@ -59,11 +62,16 @@ module.exports = function(grunt) {
         files: ['app/**/*.scss'],
         tasks: ['sass', 'autoprefixer']
       }
+    },
+    wiredep: {
+      build: {
+        src: ['public/**/*.html']
+      }
     }
   });
 
   grunt.registerTask('default', []);
-  grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass', 'autoprefixer']);
+  grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass', 'autoprefixer', 'wiredep']);
   grunt.registerTask('serve', ['build', 'watch']);
 
 };
