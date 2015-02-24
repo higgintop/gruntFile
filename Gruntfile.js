@@ -50,6 +50,10 @@ module.exports = function(grunt) {
       }
     },
     watch: {
+      bower: {
+        files: ['bower.json'],
+        tasks: ['wiredep']
+      },
       other: {
         files: ['app/**', '!app/**/*.jade', '!app/**/*.scss'],
         tasks: ['copy']
