@@ -56,5 +56,6 @@ module.exports = function(grunt) {
 
   grunt.registerTask('default', []);
   grunt.registerTask('build', ['clean', 'copy', 'jade', 'sass']);
+  grunt.registerTask('serve', ['build', 'watch']);
 
 };
